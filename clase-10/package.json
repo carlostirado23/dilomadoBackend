@@ -1,0 +1,40 @@
+{
+  "name": "proyecto-backend",
+  "version": "1.0.0",
+  "description": "Diplomado Fullstack",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "migrate:up": "npx sequelize-cli db:migrate --env=development",
+    "migrate:undo": "npx sequelize-cli db:migrate:undo",
+    "seed:up": "npx sequelize-cli db:seed:all",
+    "seed:undo": "npx sequelize-cli db:seed:undo",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Miguel Arango Otalvaro",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^1.41.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "excel4node": "^1.8.2",
+    "express": "^4.19.2",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.7.0",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "mysql2": "^3.9.7",
+    "nodemon": "^3.1.0",
+    "pdfkit": "^0.15.0",
+    "sequelize": "^6.37.3",
+    "socket.io": "^4.7.5",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.2"
+  }
+}

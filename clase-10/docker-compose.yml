@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: diplomado
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: 12345678
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9001:9001"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+      # ENV: local
+      # HOST: localhost
+      # USUARIO_BD: dev
+      # BASE_DE_DATOS: diplomado
+      # CONTRASENA: 12345678
+      # JWT_SECRETO: SECRETO
+      # ALGORITMO: aes-256-cbc
+      # CONTRASENA_CRYPTO: ENCRIPTADO
+      # CONTRASENA_CRYPTO_SEGUNDA: 1234567890
+      # SALT_ROUND: 12
+      # MONGO_USUARIO: marango
+      # MONGO_CONTRASENA: Diplomado9*
+      # MONGO_CONEXION: cluster0.otuiehh.mongodb.net
+      # MONGO_CLUSTER: Cluster0
+      # MONGO_BASE_DE_DATOS: diplomado
+    depends_on:
+      - mysql
+  
+volumes:
+  mysql_data:

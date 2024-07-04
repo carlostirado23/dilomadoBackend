@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Descargar PDF y Excel</title>
+  </head>
+  <body>
+    <button id="download-pdf">Descargar PDF</button>
+    <button id="download-excel">Descargar Excel</button>
+
+    <script>
+      const url = (ruta) => `http://127.0.0.1:9001/api/reportes/${ruta}`;
+      document.getElementById("download-pdf").addEventListener("click", () => {
+        fetch(url("pdf"))
+          .then((response) => response.blob())
+          .then((blob) => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.style.display = "none";
+            a.href = url;
+            a.download = "MiArchivoPDF.pdf";
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+          })
+          .catch((err) => console.error("Error al descargar el PDF:", err));
+      });
+
+      document
+        .getElementById("download-excel")
+        .addEventListener("click", () => {
+          fetch(url("excel"))
+            .then((response) => response.blob())
+            .then((blob) => {
+              const url = window.URL.createObjectURL(blob);
+              const a = document.createElement("a");
+              a.style.display = "none";
+              a.href = url;
+              a.download = "MiArchivoExcel.xlsx";
+              document.body.appendChild(a);
+              a.click();
+              window.URL.revokeObjectURL(url);
+            })
+            .catch((err) => console.error("Error al descargar el Excel:", err));
+        });
+    </script>
+  </body>
+</html>
